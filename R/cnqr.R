@@ -196,7 +196,7 @@ cnqr <- function(edges, dat, sc, basevine, cdf=identity,
         }
         ## Loop through candidate copula families, fitting each one to the running vine.
         res_cand <- lapply(copspace[[i]], function(cop){
-            if (verbose) cat(paste0("Fitting copula '", cop, "'. "))
+            if (verbose) cat(paste0("Fitting copula '", cop, "'.\n"))
             ## Get initial parameter estimates, and select copula reflection/permutation.
             init <- cpar_init(ucondtr, vcondtr, cop)
             ## Let's just use the copula family that comes out of cpar_init(),
@@ -208,7 +208,7 @@ cnqr <- function(edges, dat, sc, basevine, cdf=identity,
             ##  training data.
             cparhat <- cnqr_est(res, a=xlab[i], cop=cop, cpar_init=cpar, sc=sc,
                                 y=ytr, uind=this_uindtr, QY=QYtr, verbose=verbose)
-            if (verbose) cat(paste0("Parameter: (", paste(cparhat[[1]], collapse=", "), ")\n"))
+            if (verbose) cat(paste0("\nParameter: (", paste(cparhat[[1]], collapse=", "), ")\n"))
             ## Augment running vine with this fit. The result is a candidate model.
             augment(res, a=xlab[i], cop=cop, cpar=cparhat, col=d)
         })
