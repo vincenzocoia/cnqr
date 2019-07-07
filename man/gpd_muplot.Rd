@@ -4,8 +4,8 @@
 \alias{gpd_muplot}
 \title{Plot of CNQR score over GPD threshold}
 \usage{
-gpd_muplot(ytr, yval, sc, from = NULL, to = NULL, qlims = c(0.5, 0.95),
-  ...)
+gpd_muplot(ytr, yval, sc, from = NULL, to = NULL, qlims = c(0.5,
+  0.95), ...)
 }
 \arguments{
 \item{ytr}{Vector of training data.}

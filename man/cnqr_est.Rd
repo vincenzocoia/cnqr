@@ -4,7 +4,8 @@
 \alias{cnqr_est}
 \title{Estimate Vine Parameters using CNQR}
 \usage{
-cnqr_est(rv, a, cop, cpar_init, sc, y, uind, QY = identity)
+cnqr_est(rv, a, cop, cpar_init, sc, y, uind, QY = identity,
+  verbose = FALSE)
 }
 \arguments{
 \item{rv}{Object of type \code{'rvine'}, to be augmented.}

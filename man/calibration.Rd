@@ -7,8 +7,8 @@
 \usage{
 calibration(y, yhat, tau, w = 1, hist = FALSE, disp_plot = TRUE)
 
-\method{calplot}{cnqr}(obj, dat = "tr", tau = NULL, QY = NULL, w = 1,
-  hist = FALSE, disp_plot = TRUE)
+\method{calplot}{cnqr}(obj, dat = "tr", tau = NULL, QY = NULL,
+  w = 1, hist = FALSE, disp_plot = TRUE)
 }
 \arguments{
 \item{y}{Vector of outcomes/response.}

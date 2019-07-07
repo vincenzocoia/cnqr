@@ -5,7 +5,8 @@
 \title{Score a Forecaster}
 \usage{
 score_forecaster(forecaster, y, x, K = 10, tau_c = 0.9, g = identity,
-  wtau = function(tau) 1/tau/(1 - tau), wx = 1, cmb = TRUE, yhat = NULL)
+  wtau = function(tau) 1/tau/(1 - tau), wx = 1, cmb = TRUE,
+  yhat = NULL)
 }
 \arguments{
 \item{forecaster}{Function with first argument being the quantile index

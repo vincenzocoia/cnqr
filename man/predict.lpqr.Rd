@@ -4,7 +4,8 @@
 \alias{predict.lpqr}
 \title{Evaluate Local Polynomial Quantile Surfaces}
 \usage{
-\method{predict}{lpqr}(object, newdata = object$data, p = 1, tau = 1:9/10)
+\method{predict}{lpqr}(object, newdata = object$data, p = 1,
+  tau = 1:9/10)
 }
 \arguments{
 \item{object}{Object of class \code{"lpqr"} (see \code{\link{lpqr}}).}

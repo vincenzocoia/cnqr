@@ -4,10 +4,10 @@
 \alias{append_edge}
 \title{Fit an Edge in CNQR}
 \usage{
-append_edge(vtr, vval, ucondtr, ucondval, tau, QY = identity, g = identity,
-  wtau = NULL, prev_cops = NULL, prev_cpars = NULL, refit_all = 0,
-  families = c("indepcop", "bvncop", "bvtcop", "mtcj", "gum", "frk", "joe",
-  "bb1"))
+append_edge(vtr, vval, ucondtr, ucondval, tau, QY = identity,
+  g = identity, wtau = NULL, prev_cops = NULL, prev_cpars = NULL,
+  refit_all = 0, families = c("indepcop", "bvncop", "bvtcop", "mtcj",
+  "gum", "frk", "joe", "bb1"))
 }
 \arguments{
 \item{vtr, vval}{Vector of uniform scores of the response. \code{vtr}

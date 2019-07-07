@@ -4,10 +4,10 @@
 \alias{inputdat}
 \title{Input Data}
 \usage{
-inputdat(xy = NULL, xv = NULL, uy = NULL, uv = NULL, uindy = NULL,
-  uindv = NULL, yx = NULL, vx = NULL, yu = NULL, vu = NULL,
-  yuind = NULL, vuind = NULL, y = NULL, v = NULL, x = NULL,
-  u = NULL, uind = NULL, prevdat = NULL, ycol = NULL)
+inputdat(xy = NULL, xv = NULL, uy = NULL, uv = NULL,
+  uindy = NULL, uindv = NULL, yx = NULL, vx = NULL, yu = NULL,
+  vu = NULL, yuind = NULL, vuind = NULL, y = NULL, v = NULL,
+  x = NULL, u = NULL, uind = NULL, prevdat = NULL, ycol = NULL)
 }
 \arguments{
 \item{xy}{Data frame or matrix of \code{x} and \code{y} data.

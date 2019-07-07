@@ -5,7 +5,8 @@
 \title{Fit Bivariate Copula in PCBN}
 \usage{
 append_copula(v, ucond, tau, cop, QY = identity, g = identity,
-  wtau = NULL, prev_cops = NULL, prev_cpars = NULL, refit_all = FALSE)
+  wtau = NULL, prev_cops = NULL, prev_cpars = NULL,
+  refit_all = FALSE)
 }
 \arguments{
 \item{v}{Vector of uniform-score observed outcomes.}

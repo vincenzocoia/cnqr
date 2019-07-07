@@ -6,8 +6,8 @@
 \usage{
 cnqr(edges, dat, sc, basevine, cdf = identity, QY = identity,
   copspace = NULL, refit = FALSE, verbose = FALSE,
-  families = c("indepcop", "bvncop", "bvtcop", "mtcj", "gum", "frk", "joe",
-  "bb1", "bskewncop", "bskewncopp"))
+  families = c("indepcop", "bvncop", "bvtcop", "mtcj", "gum", "frk",
+  "joe", "bb1", "bskewncop", "bskewncopp"))
 }
 \arguments{
 \item{edges}{Integer vector starting with the column number of the response
