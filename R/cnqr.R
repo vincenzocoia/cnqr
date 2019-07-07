@@ -207,7 +207,7 @@ cnqr <- function(edges, dat, sc, basevine, cdf=identity,
             ## Get parameter estimates using CNQR on this copula, with the
             ##  training data.
             cparhat <- cnqr_est(res, a=xlab[i], cop=cop, cpar_init=cpar, sc=sc,
-                                y=ytr, uind=this_uindtr, QY=QYtr)
+                                y=ytr, uind=this_uindtr, QY=QYtr, verbose=verbose)
             if (verbose) cat(paste0("Parameter: (", paste(cparhat[[1]], collapse=", "), ")\n"))
             ## Augment running vine with this fit. The result is a candidate model.
             augment(res, a=xlab[i], cop=cop, cpar=cparhat, col=d)
@@ -232,7 +232,7 @@ cnqr <- function(edges, dat, sc, basevine, cdf=identity,
         if (novaldat) {
             ## There's no validation data. Just use training data.
             cparhat <- cnqr_est(res, a=xlab, cop=cops, cpar_init=cpars,
-                                sc=sc, y=ytr, uind=uindtr, QY=QYtr)
+                                sc=sc, y=ytr, uind=uindtr, QY=QYtr, verbose=verbose)
         } else {
             ## There's separate validation data. Combine training and validation
             ##  data to use in the estimation.
@@ -244,7 +244,7 @@ cnqr <- function(edges, dat, sc, basevine, cdf=identity,
                 QYall <- function(tau) rbind(QYtr(tau), QYval(tau))
             }
             cparhat <- cnqr_est(res, a=xlab, cop=cops, cpar_init=cpars,
-                                sc=sc, y=y, uind=uind, QY=QYall)
+                                sc=sc, y=y, uind=uind, QY=QYall, verbose=verbose)
         }
         ## Bind parameter estimates to the vine.
         res <- augment(res, a=xlab, cop=cops, cpar=cparhat, col=d)

@@ -96,7 +96,7 @@
 #' ## Try fitting no variables:
 #' cnqr_est(rv, a=integer(0))
 #' @export
-cnqr_est <- function(rv, a, cop, cpar_init, sc, y, uind, QY=identity) {
+cnqr_est <- function(rv, a, cop, cpar_init, sc, y, uind, QY=identity, verbose=FALSE) {
     if (length(a) == 0) return(list())
     ## Initial parameters:
     len <- sapply(cpar_init, length)
@@ -133,7 +133,15 @@ cnqr_est <- function(rv, a, cop, cpar_init, sc, y, uind, QY=identity) {
     cparvec_init <- pmax(bnds$lower + 0.01, cparvec_init)
     cparvec_init <- pmin(bnds$upper - 0.01, cparvec_init)
     ## Minimize the score on the data
-    obj <- function(cparvec) score_eval(y, yhat(cparvec), sc=sc)
+    if (verbose) {
+        obj <- function(cparvec) {
+            cat("|")
+            score_eval(y, yhat(cparvec), sc=sc)
+        }
+    } else {
+        obj <- function(cparvec)
+            score_eval(y, yhat(cparvec), sc=sc)
+    }
     cparvec_hat <- try(rnlm(obj, cparvec_init, cparspace_)$estimate)
     if (inherits(cparvec_hat, "try-error")) {
         warning(paste("Ignoring the error that 'nlm' threw, and just using",
