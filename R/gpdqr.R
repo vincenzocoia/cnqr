@@ -28,48 +28,6 @@
 #' \code{"lpqr"} \code{object}.
 #' @return A matrix with columns corresponding to the ordered quantile indices
 #' \code{tau}, and rows corresponding to query points (rows) in \code{newdata}.
-#' @examples
-#' library(ggplot2)
-#' set.seed(123)
-#' ## Get data
-#' x <- runif(1000)*pi
-#' y <- abs(rnorm(1000))*sin(x)*100
-#' z <- x + rexp(1000)*y
-#' dat <- data.frame(x=x, y=y, z=z)
-#' tau <- c(0.9, 0.95, 0.99, 0.999)
-#'
-#' ## --- Univariate regression ---
-#' setup <- lpqr(z ~ x, data=dat, kernel="boxcar")
-#' xgrid <- seq(0, pi, length.out=20)
-#'
-#' yhat <- gpdqr(setup, newdata=data.frame(x=xgrid), tau=tau)
-#' yhatlong <- reshape2::melt(yhat)
-#' names(yhatlong) <- c("x", "tau", "z")
-#' yhatlong$tau <- tau[yhatlong$tau]
-#' yhatlong$x <- xgrid[yhatlong$x]
-#' ggplot(dat, aes(x, z)) +
-#'     geom_point() +
-#'     geom_line(mapping=aes(group=tau),
-#'               data=yhatlong, colour="red")
-#'
-#' yhat <- gpdqr(setup, newdata=data.frame(x=xgrid), tau=tau)
-#' yhatlong <- reshape2::melt(yhat)
-#' names(yhatlong) <- c("x", "tau", "z")
-#' yhatlong$tau <- tau[yhatlong$tau]
-#' yhatlong$x <- xgrid[yhatlong$x]
-#' ggplot(dat, aes(x, z)) +
-#'     geom_point() +
-#'     geom_line(mapping=aes(group=tau),
-#'               data=yhatlong, colour="red")
-#'
-#' ## --- Multivariate regression ---
-#' setup <- lpqr(z ~ x + y, data=dat)
-#' ygrid <- seq(min(y), max(y), length.out=20)
-#' query <- expand.grid(x=xgrid, y=ygrid)
-#'
-#' yhat <- gpdqr(setup, newdata=query, tau=tau)
-#' head(yhat)
-#' @import ismev
 #' @seealso \code{\link{predict.lpqr}}
 #' @export
 gpdqr <- function(object, newdata, tau_thresh=0.9, tau=space_taus(10, tau_c=tau_thresh), p=2) {
@@ -132,7 +90,7 @@ gpdqr <- function(object, newdata, tau_thresh=0.9, tau=space_taus(10, tau_c=tau_
         ##  quantile NA and move on.
         if (!is.na(thismu) & length(unique(subsuby)) > 2) {
             # thetahat <- nlm(ell, c(1,1))$estimate
-            thetahat <- gpd.fit(subsuby, thismu, show=FALSE)$mle
+            thetahat <- ismev::gpd.fit(subsuby, thismu, show=FALSE)$mle
             sigma <- thetahat[1]
             xi <- thetahat[2]
             ## Extract quantiles (convert "absolute" quantile index to "within-gpd"

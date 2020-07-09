@@ -69,17 +69,6 @@
 #'      rules, prediction, and estimation. Journal of the American Statistical
 #'      Association, 102(477):359–378.}
 #' }
-#' @examples
-#' n <- 10
-#' set.seed(364)
-#' y <- rnorm(n)
-#' tau <- c(0.8, 0.9)
-#' sc <- scorer(tau)
-#' yhat <- matrix(qnorm(tau), nrow=n, ncol=length(tau), byrow=TRUE)
-#'
-#' score_eval(y, yhat, sc, cmb=FALSE)
-#' score_eval(y, yhat, sc, se=TRUE)
-#' score_eval(y, yhat, sc)
 #' @rdname scoring
 #' @export
 scoreq <- function(y, yhat, tau, w = 1, g = identity, cmb = TRUE,

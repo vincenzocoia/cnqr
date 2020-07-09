@@ -144,56 +144,6 @@ lpqr <- function(formula, data, h=0.5, kernel="gaussian") {
 #' @return A matrix, with columns corresponding to the quantile
 #' indices \code{tau}, and columns corresponding to the query points in
 #' \code{newdata}.
-#' @examples
-#' library(ggplot2)
-#' set.seed(123)
-#' ## Get data
-#' x <- runif(1000)*pi
-#' y <- abs(rnorm(1000))*sin(x)*100
-#' z <- x + rexp(1000)*y
-#' dat <- data.frame(x=x, y=y, z=z)
-#' tau <- c(0.1, 0.5, 0.9)
-#'
-#' ## --- Univariate regression ---
-#' setup <- lpqr(z ~ x, data=dat)
-#' xgrid <- seq(0, pi, length.out=20)
-#'
-#' ## Example 1: Kernel smoothing, p=0
-#' yhat <- predict(setup, newdata=data.frame(x=xgrid), p=0, tau=tau)
-#' yhatlong <- reshape2::melt(yhat)
-#' names(yhatlong) <- c("x", "tau", "z")
-#' yhatlong$tau <- tau[yhatlong$tau]
-#' yhatlong$x <- xgrid[yhatlong$x]
-#' ggplot(dat, aes(x, z)) +
-#'   geom_point() +
-#'   geom_line(mapping=aes(group=tau),
-#'             data=yhatlong, colour="red")
-#'
-#' ## Example 2: p=2
-#' yhat <- predict(setup, newdata=data.frame(x=xgrid), p=2, tau=tau)
-#' yhatlong <- reshape2::melt(yhat)
-#' names(yhatlong) <- c("x", "tau", "z")
-#' yhatlong$tau <- tau[yhatlong$tau]
-#' yhatlong$x <- xgrid[yhatlong$x]
-#' ggplot(dat, aes(x, z)) +
-#'   geom_point() +
-#'   geom_line(mapping=aes(group=tau),
-#'             data=yhatlong, colour="red")
-#'
-#' ## --- Multivariate regression ---
-#' setup <- lpqr(z ~ x + y, data=dat)
-#' ygrid <- seq(min(y), max(y), length.out=20)
-#' query <- expand.grid(x=xgrid, y=ygrid)
-#'
-#' ## Example 3: Kernel smoothing, p=0
-#' yhat <- predict(setup, newdata=query, p=0, tau=tau)
-#' head(yhat)
-#'
-#' ## Example 4: Self-defined local formula
-#' yhat <- predict(setup, newdata=query,
-#'                 p = z ~ x + I(x^2) + y, tau=tau)
-#' head(yhat)
-#' @import quantreg
 #' @export
 predict.lpqr <- function(object, newdata=object$data, p=1, tau=1:9/10) {
     if (length(tau) == 0) return(matrix(ncol=0, nrow=nrow(newdata)))
@@ -240,7 +190,7 @@ predict.lpqr <- function(object, newdata=object$data, p=1, tau=1:9/10) {
             ##  P.S. -- that's why we centered the data, so that we only
             ##  need to grab the intercept, as opposed to using the possibly more
             ##  computationally expensive "predict.rq()" function.
-            res <- try(rq(formu, tau=tau, data=cdat, weights=weights))
+            res <- try(quantreg::rq(formu, tau=tau, data=cdat, weights=weights))
             if (inherits(res, "try-error")) {
                 ## rq() couldn't fit. Try reducing the power.
                 thisp <- thisp - 1

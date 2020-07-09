@@ -46,48 +46,6 @@ the GPD threshold parameter, and then the scale and shape (EVI) parameters
 of the GPD are estimated using weighted MLE, with weights determined by the
 \code{"lpqr"} \code{object}.
 }
-\examples{
-library(ggplot2)
-set.seed(123)
-## Get data
-x <- runif(1000)*pi
-y <- abs(rnorm(1000))*sin(x)*100
-z <- x + rexp(1000)*y
-dat <- data.frame(x=x, y=y, z=z)
-tau <- c(0.9, 0.95, 0.99, 0.999)
-
-## --- Univariate regression ---
-setup <- lpqr(z ~ x, data=dat, kernel="boxcar")
-xgrid <- seq(0, pi, length.out=20)
-
-yhat <- gpdqr(setup, newdata=data.frame(x=xgrid), tau=tau)
-yhatlong <- reshape2::melt(yhat)
-names(yhatlong) <- c("x", "tau", "z")
-yhatlong$tau <- tau[yhatlong$tau]
-yhatlong$x <- xgrid[yhatlong$x]
-ggplot(dat, aes(x, z)) +
-    geom_point() +
-    geom_line(mapping=aes(group=tau),
-              data=yhatlong, colour="red")
-
-yhat <- gpdqr(setup, newdata=data.frame(x=xgrid), tau=tau)
-yhatlong <- reshape2::melt(yhat)
-names(yhatlong) <- c("x", "tau", "z")
-yhatlong$tau <- tau[yhatlong$tau]
-yhatlong$x <- xgrid[yhatlong$x]
-ggplot(dat, aes(x, z)) +
-    geom_point() +
-    geom_line(mapping=aes(group=tau),
-              data=yhatlong, colour="red")
-
-## --- Multivariate regression ---
-setup <- lpqr(z ~ x + y, data=dat)
-ygrid <- seq(min(y), max(y), length.out=20)
-query <- expand.grid(x=xgrid, y=ygrid)
-
-yhat <- gpdqr(setup, newdata=query, tau=tau)
-head(yhat)
-}
 \seealso{
 \code{\link{predict.lpqr}}
 }

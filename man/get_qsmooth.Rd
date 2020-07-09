@@ -26,13 +26,3 @@ Data frame with columns "x" (the grid of x values), "tau"
 For x-y data, uses a moving window along x to estimate quantiles using a GPD
 tail, using \code{\link{gpdqr}}.
 }
-\examples{
-dat <- data.frame(y=rnorm(1000), x=runif(1000))
-res <- get_qsmooth(dat)
-
-head(dat)
-library(ggplot2)
-ggplot(dat, aes(x, y)) +
-  geom_point() +
-  geom_line(data=res, mapping=aes(x,y,group=tau), colour="red")
-}

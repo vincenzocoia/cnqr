@@ -11,15 +11,6 @@
 #'
 #' @return Data frame with columns "x" (the grid of x values), "tau"
 #' (quantile levels), and "y" (quantile estimate).
-#' @examples
-#' dat <- data.frame(y=rnorm(1000), x=runif(1000))
-#' res <- get_qsmooth(dat)
-#'
-#' head(dat)
-#' library(ggplot2)
-#' ggplot(dat, aes(x, y)) +
-#'   geom_point() +
-#'   geom_line(data=res, mapping=aes(x,y,group=tau), colour="red")
 #' @export
 get_qsmooth <- function(data, ycol=1, xcol=2, npoints=100, h=0.5, tau=space_taus(10)) {
     names(data)[c(ycol, xcol)] <- c("y", "x")

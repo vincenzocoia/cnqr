@@ -7,7 +7,9 @@ Author: Vincenzo Coia
 Maintainer: Vincenzo Coia <vincen.coia@stat.ubc.ca>
 Description: Hosts a suite of functions to assist with composite nonlinear quantile regression.
 LazyData: TRUE
-RoxygenNote: 6.1.0
-License: GPL (>= 2)
+RoxygenNote: 6.1.1
+License: GPL-3
 Imports:
-    copsupp
+    copsupp,
+    ggplot2,
+    ismev
